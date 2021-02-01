@@ -22,19 +22,23 @@ An overview of this project:
   generates various white noises will allow me to become much more productive
   throughout the day and fall asleep quicker by blocking out unwanted noise.
   
+
 ## User Stories
 - As a user, I want to be able to create a new sound profile.
-- As a user, I want to be able to delete a sound profile.
-- As a user, I want to be able to rename a sound profile.  
-- As a user, I want to be able to add a sound to a sound profile.
+- As a user, I want to be able to delete an existing sound profile.
+- As a user, I want to be able to rename an existing sound profile.  
+- As a user, I want to be able to add a sound to an existing sound profile.
 - As a user, I want to be able to delete a sound from a sound profile.  
-- As a user, I want to be able to adjust the volume of a sound.
+- As a user, I want to be able to increase the volume of a sound.
+- As a user, I want to be able to decrease the volume of a sound.
+
+
+## Future User Stories
 - As a user, I want to be able to set a volume limit.
-- As a user, I want to be able to mute the application.  
+- As a user, I want to be able to mute the application.
 - As a user, I want to be able to play my sound profile.
-- As a user, I want to be able to pause my sound profile. 
-- As a user, I want to be able to set a timer at which upon count down, 
+- As a user, I want to be able to pause my sound profile.
+- As a user, I want to be able to set a timer at which upon count down,
   the app stops playing sound.
 - As a user, I want to create a new sound profile with a randomized sound
   and volume combination.
-
