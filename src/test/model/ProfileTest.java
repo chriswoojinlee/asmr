@@ -66,4 +66,13 @@ class ProfileTest {
         assertEquals(1, profile.getSoundCount());                                         // Profile 1 contains Thunder
         assertEquals(listOfSounds, profile.getSounds());
     }
+
+    @Test
+    void testGetters() {
+        ArrayList<Sound> listOfSounds = new ArrayList<>();
+
+        assertEquals(listOfSounds, profile.getSounds());
+        assertEquals(0, profile.getSoundCount());
+        assertEquals("Profile 1", profile.getProfileName());
+    }
 }

@@ -2,10 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
-// Represents the top-level view of the multiple different sound profiles in the application
+// Represents the top-level of the multiple different sound profiles in the application
 public class ProfileManager {
-    private ArrayList<Profile> listOfProfiles;  // list of profiles currently in the app
+    private static ArrayList<Profile> listOfProfiles;  // list of profiles currently in the app
 
+    /*
+     * EFFECTS: an empty list for profiles to go in the app is generated
+     */
     public ProfileManager() {
         listOfProfiles = new ArrayList<>();
     }
@@ -14,10 +17,10 @@ public class ProfileManager {
      * MODIFIES: this
      * EFFECTS: specified profile is added to list of profiles
      */
-    public String createProfile(Profile p) {
+    public String addProfile(Profile p) {
         if (!listOfProfiles.contains(p)) {
             listOfProfiles.add(p);
-            return "Created a new profile: " + p.getProfileName() + "!";
+            return "Added a new profile: " + p.getProfileName() + "!";
         } else {
             return "Unable to create " + p.getProfileName() + ". " + p.getProfileName() + " already exists!";
         }
@@ -34,6 +37,14 @@ public class ProfileManager {
         } else {
             return "Unable to delete " + p.getProfileName() + ". " + p.getProfileName() + " doesn't exist!";
         }
+    }
+
+    public ArrayList<Profile> getListOfProfiles() {
+        return listOfProfiles;
+    }
+
+    public int getProfileCount() {
+        return listOfProfiles.size();
     }
 
 }

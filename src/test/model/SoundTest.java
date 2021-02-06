@@ -13,15 +13,27 @@ public class SoundTest {
     }
 
     @Test
-    void increaseVolume() {
+    void testConstructor() {
+        assertEquals("Wind", sound.getSoundName());
+        assertEquals(0, sound.getVolume());
+    }
+
+    @Test
+    void testIncreaseVolume() {
         assertEquals(50, sound.increaseVolume(50));
         assertEquals(100, sound.increaseVolume(51));
     }
 
     @Test
-    void decreaseVolume() {
+    void testDecreaseVolume() {
         sound.increaseVolume(100);
         assertEquals(50, sound.decreaseVolume(50));
         assertEquals(0, sound.decreaseVolume(51));
+    }
+
+    @Test
+    void testGetters() {
+        assertEquals(0, sound.getVolume());
+        assertEquals("Wind", sound.getSoundName());
     }
 }

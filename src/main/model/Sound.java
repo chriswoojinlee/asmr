@@ -3,7 +3,7 @@ package model;
 // Represents an individual sound that can be played alone or in a profile that has a volume and name
 public class Sound {
 
-    private static int DEFAULT_VOLUME = 0;
+    private static int DEFAULT_VOLUME = 0; // volume of every sound upon first play before volume is manually adjusted
     private int volume;  // volume of the sound
     private String name; // name of the sound'
 

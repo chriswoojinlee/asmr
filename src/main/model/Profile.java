@@ -9,7 +9,7 @@ public class Profile {
 
     /*
      * REQUIRES: profileName has a non-zero length
-     * EFFECTS: name of Profile is set to profileName
+     * EFFECTS: name of Profile is set to profileName and a list for sounds to go in the profile is generated
      */
     public Profile(String profileName) {
         name = profileName;
