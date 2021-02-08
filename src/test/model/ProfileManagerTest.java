@@ -55,7 +55,6 @@ public class ProfileManagerTest {
         assertEquals(listOfProfilesOne, profileManager.getListOfProfiles());    // Profile manager has only Profile 1
         profileManager.deleteProfile(profileOne);                               // Profile 1 is deleted from Profile manager
         assertEquals(listOfProfilesThree, profileManager.getListOfProfiles());  // Profile manager has no profiles
-
     }
 
     @Test

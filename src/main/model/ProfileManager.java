@@ -14,29 +14,23 @@ public class ProfileManager {
     }
 
     /*
+     * REQUIRES: the profile manager does not already contain the specified profile
      * MODIFIES: this
      * EFFECTS: specified profile is added to list of profiles
      */
     public String addProfile(Profile p) {
-        if (!listOfProfiles.contains(p)) {
-            listOfProfiles.add(p);
-            return "Added a new profile: " + p.getProfileName() + "!";
-        } else {
-            return "Unable to create " + p.getProfileName() + ". " + p.getProfileName() + " already exists!";
-        }
+        listOfProfiles.add(p);
+        return "Added a new profile: " + p.getProfileName() + "!";
     }
 
     /*
+     * REQUIRES: the profile manager already contains the specified profile
      * MODIFIES: this
      * EFFECTS: specified profile is deleted from list of profiles
      */
     public String deleteProfile(Profile p) {
-        if (listOfProfiles.contains(p)) {
-            listOfProfiles.remove(p);
-            return "Deleted profile " + p.getProfileName() + "!";
-        } else {
-            return "Unable to delete " + p.getProfileName() + ". " + p.getProfileName() + " doesn't exist!";
-        }
+        listOfProfiles.remove(p);
+        return "Deleted profile " + p.getProfileName() + "!";
     }
 
     public ArrayList<Profile> getListOfProfiles() {
