@@ -40,7 +40,6 @@ class ProfileTest {
         listOfSounds.add(rain);
 
         profile.addSound(wind);
-        assertEquals("Unable to add Wind to Profile 1!" , profile.addSound(wind)); // Profile 1 already contains Wind
         assertEquals("Added Rain to Profile 1!", profile.addSound(rain)); // Profile 1 now contains Wind and Rain
         assertEquals(2, profile.getSoundCount());
         assertEquals(listOfSounds, profile.getSounds());
@@ -51,19 +50,16 @@ class ProfileTest {
         ArrayList<Sound> listOfSounds = new ArrayList<>();
         listOfSounds.add(thunder);
         listOfSounds.add(rain);
+        listOfSounds.add(wind);
 
         profile.addSound(thunder);
         profile.addSound(rain);
         profile.addSound(wind);                                                                    // Profile 1 contains Thunder, Rain, and Wind
-        profile.removeSound(wind);                                                                 // Removed Rain from Profile 1
 
-        assertEquals("Unable to remove Wind from Profile 1!", profile.removeSound(wind)); // Wind doesn't exist in Profile 1
-        assertEquals(2, profile.getSoundCount());                                         // Profile 1 contains Thunder and Rain
-        assertEquals(listOfSounds, profile.getSounds());
         assertEquals("Removed Rain from Profile 1!", profile.removeSound(rain));          // Removed Rain from Profile 1
         listOfSounds.remove(rain);
 
-        assertEquals(1, profile.getSoundCount());                                         // Profile 1 contains Thunder
+        assertEquals(2, profile.getSoundCount());                                         // Profile 1 contains Thunder and Wind
         assertEquals(listOfSounds, profile.getSounds());
     }
 

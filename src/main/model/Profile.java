@@ -26,29 +26,23 @@ public class Profile {
     }
 
     /*
+     * REQUIRES: specified sound is not already in list of sounds
      * MODIFIES: this
      * EFFECTS: specified sound is added to list of sounds
      */
     public String addSound(Sound s) {
-        if (!listOfSounds.contains(s)) {
-            listOfSounds.add(s);
-            return "Added " + s.getSoundName() + " to " + name + "!";
-        } else {
-            return "Unable to add " + s.getSoundName() + " to " + name + "!";
-        }
+        listOfSounds.add(s);
+        return "Added " + s.getSoundName() + " to " + name + "!";
     }
 
     /*
+     * REQUIRES: specified sound is already in list of sounds
      * MODIFIES: this
      * EFFECTS: specified sound is removed from list of sounds
      */
     public String removeSound(Sound s) {
-        if (listOfSounds.contains(s)) {
-            listOfSounds.remove(s);
-            return "Removed " + s.getSoundName() + " from " + name + "!";
-        } else {
-            return "Unable to remove " + s.getSoundName() + " from " + name + "!";
-        }
+        listOfSounds.remove(s);
+        return "Removed " + s.getSoundName() + " from " + name + "!";
     }
 
     public ArrayList<Sound> getSounds() {
