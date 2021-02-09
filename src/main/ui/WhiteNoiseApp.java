@@ -51,12 +51,10 @@ public class WhiteNoiseApp {
             doCreateProfile();
         } else if (command.equals("d")) {
             doDeleteProfile();
-        } else if (command.equals("a")) {
-            doAddSound();
-        } else if (command.equals("r")) {
-            doRemoveSound();
         } else if (command.equals("s")) {
             selectProfile();
+        } else if (command.equals("e")) {
+            doEditProfileName();
         } else if (command.equals("b")) {
             displayMenu();
         } else {
@@ -76,6 +74,7 @@ public class WhiteNoiseApp {
         System.out.println("\tc -> Create a new profile");
         System.out.println("\td -> Delete a profile");
         System.out.println("\ts -> Select a profile to access");
+        System.out.println("\te -> Edit a profile's name");
         System.out.println("\tq -> Quit");
     }
 
@@ -86,7 +85,7 @@ public class WhiteNoiseApp {
         String name = input.next();
         Profile p = new Profile(name);
         pm.addProfile(p);
-        System.out.println("A new profile named " + name + " has been created");
+        System.out.println("A new profile named " + name + " has been created!");
     }
 
 
@@ -96,29 +95,48 @@ public class WhiteNoiseApp {
         System.out.println("\nDelete a profile by pressing the corresponding number:");
 
         List<String> profileNames = new ArrayList<>();
-        for (Profile p: pm.getListOfProfiles()) {
+        for (Profile p : pm.getListOfProfiles()) {
             profileNames.add(p.getProfileName());
         }
 
         int i = 0;
-        for (Profile p: pm.getListOfProfiles()) {
-            System.out.println(i + " " + profileNames.get(i));
+        for (Profile p : pm.getListOfProfiles()) {
+            System.out.println(i + ") " + profileNames.get(i));
             i++;
         }
 
-        int delete = input.nextInt();
-
-        pm.deleteProfile(pm.getListOfProfiles().get(delete));
+        int profileToDelete = input.nextInt();
+        System.out.println(pm.getListOfProfiles().get(profileToDelete).getProfileName() + " has been deleted!");
+        pm.deleteProfile(pm.getListOfProfiles().get(profileToDelete));
     }
 
     // MODIFIES: this
-    // EFFECTS: chooses and enters an available profile from the profile manager
+    // EFFECTS: edits the name of a profile currently in the profile manager
+    private void doEditProfileName() {
+        System.out.println("\nEdit a profile's name by pressing its corresponding number:");
+
+        int i = 0;
+        for (Profile p : pm.getListOfProfiles()) {
+            System.out.println(i + ") " + pm.getListOfProfiles().get(i).getProfileName());
+            i++;
+        }
+
+        int selectedProfile = input.nextInt();
+        String oldName = pm.getListOfProfiles().get(selectedProfile).getProfileName();
+        System.out.println("\nEnter a new name for " + oldName + ":");
+        String newName = input.next();
+        System.out.println("The name of the profile " + oldName + " has now been changed to " + newName + "!");
+        pm.getListOfProfiles().get(selectedProfile).editProfileName(newName);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: enters into a profile currently in the profile manager
     private void selectProfile() {
         System.out.println("\nChoose a profile by pressing the corresponding number");
         System.out.println("\nOr press b -> Back to main menu");
 
         int i = 0;
-        for (Profile p: pm.getListOfProfiles()) {
+        for (Profile p : pm.getListOfProfiles()) {
             System.out.println(i + ") " + pm.getListOfProfiles().get(i).getProfileName());
             i++;
         }
@@ -133,14 +151,26 @@ public class WhiteNoiseApp {
         System.out.println("\nChoose from:");
         System.out.println("\ta -> Add a sound");
         System.out.println("\tr -> Remove a sound");
+        System.out.println("\tv -> View sounds");
         System.out.println("\tb -> Back to main menu");
 
-
+        String command = input.next();
+        if (command.equals("a")) {
+            doAddSound(p);
+        } else if (command.equals("r")) {
+            doRemoveSound(p);
+        } else if (command.equals("v")) {
+            doViewSounds(p);
+        } else if (command.equals("b")) {
+            displayMenu();
+        } else {
+            System.out.println("Selection not valid...");
+        }
     }
 
     // MODIFIES: this
-    // EFFECTS: adds a sound to selected profile
-    private void doAddSound() {
+    // EFFECTS: adds a sound to the current profile
+    private void doAddSound(Profile p) {
         System.out.println("\nAdd a sound by pressing the corresponding number");
         System.out.println("\nOr press b -> Back to main menu");
         ArrayList<Sound> availableSounds = new ArrayList<>();
@@ -149,20 +179,43 @@ public class WhiteNoiseApp {
         availableSounds.add(thunder);
 
         int i = 0;
-        for (Sound s: availableSounds) {
+        for (Sound s : availableSounds) {
             System.out.println(i + ") " + availableSounds.get(i).getSoundName());
             i++;
         }
 
-        Integer add = input.nextInt();
-
+        int soundToAdd = input.nextInt();
+        String soundToAddName = availableSounds.get(soundToAdd).getSoundName();
+        System.out.println("Added " + soundToAddName + " to " + p.getProfileName() + "!");
+        p.addSound(availableSounds.get(soundToAdd));
     }
 
     // MODIFIES: this
-    // EFFECTS: removes a sound currently in selected profile
-    private void doRemoveSound() {
+    // EFFECTS: removes a sound from the current profile
+    private void doRemoveSound(Profile p) {
+        System.out.println("\nRemove a sound by pressing the corresponding number");
+        System.out.println("\nOr press b -> Back to main menu");
 
+        int i = 0;
+        for (Sound s : p.getSounds()) {
+            System.out.println(i + ") " + p.getSounds().get(i).getSoundName());
+            i++;
+        }
+
+        int soundToRemove = input.nextInt();
+        System.out.println("Removed " + p.getSounds().get(soundToRemove) + " from " + p.getProfileName() + "!");
+        p.removeSound(p.getSounds().get(soundToRemove));
     }
 
+    // EFFECTS: view the sounds in current profile
+    private void doViewSounds(Profile p) {
+        System.out.println("\nPress b -> Back to main menu");
+
+        int i = 0;
+        for (Sound s : p.getSounds()) {
+            System.out.println(i + ") " + p.getSounds().get(i).getSoundName());
+            i++;
+        }
+    }
 }
 
