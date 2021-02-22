@@ -28,12 +28,14 @@ An overview of this project:
 - As a user, I want to be able to delete an existing sound profile.
 - As a user, I want to be able to rename an existing sound profile.  
 - As a user, I want to be able to add a sound to an existing sound profile.
-- As a user, I want to be able to delete a sound from a sound profile.  
+- As a user, I want to be able to delete a sound from an existing sound profile.
+- As a user, I want to be able to save a sound profile to file.
+- As a user, I want to be able to load in a saved sound profile from file.
+
+
+## Future User Stories (for my own reference)
 - As a user, I want to be able to increase the volume of a sound.
 - As a user, I want to be able to decrease the volume of a sound.
-
-
-## Future User Stories
 - As a user, I want to be able to set a volume limit.
 - As a user, I want to be able to mute the application.
 - As a user, I want to be able to play my sound profile.
