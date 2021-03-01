@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents an individual sound that can be played alone or in a profile that has a volume and name
-public class Sound {
+public class Sound implements Writable {
 
     private static int DEFAULT_VOLUME = 0; // volume of every sound upon first play before volume is manually adjusted
     private int volume;  // volume of the sound
@@ -55,5 +58,13 @@ public class Sound {
 
     public String getSoundName() {
         return name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("volume", volume);
+        json.put("name", name);
+        return json;
     }
 }

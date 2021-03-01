@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 import java.util.ArrayList;
 
 // Represents the top-level of the multiple different sound profiles in the application
-public class ProfileManager {
+public class ProfileManager implements Writable {
     private static ArrayList<Profile> listOfProfiles;  // list of profiles currently in the app
 
     /*
@@ -41,4 +44,21 @@ public class ProfileManager {
         return listOfProfiles.size();
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("profiles", profilesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns profiles in this profile manager as a JSON array
+    private JSONArray profilesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Profile p : listOfProfiles) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
+    }
 }

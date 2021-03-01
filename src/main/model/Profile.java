@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 import java.util.ArrayList;
 
 // Represents a sound profile (similar to a music playlist) having a name and list of sounds
-public class Profile {
+public class Profile implements Writable {
     private String name;                    // name of the profile
     private ArrayList<Sound> listOfSounds;  // list of sounds currently in the profile
 
@@ -55,5 +58,23 @@ public class Profile {
 
     public String getProfileName() {
         return name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        return json;
+    }
+
+    // EFFECTS: returns sounds in this profile as a JSON array
+    private JSONArray soundsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Sound s : listOfSounds) {
+            jsonArray.put(s.toJson());
+        }
+
+        return jsonArray;
     }
 }
