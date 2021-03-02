@@ -2,6 +2,7 @@ package persistence;
 
 import model.Profile;
 import model.ProfileManager;
+import model.Sound;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+// Source: JsonSerializationDemo from CPSC 210
 class JsonWriterTest extends JsonTest {
     //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to
     //write data to a file and then use the reader to read it back in and check that we
@@ -50,6 +52,9 @@ class JsonWriterTest extends JsonTest {
             ProfileManager pm = new ProfileManager();
             pm.addProfile(new Profile("Profile1"));
             pm.addProfile(new Profile("Profile2"));
+            pm.getListOfProfiles().get(0).addSound(new Sound("wind", "/wind.wav"));
+            pm.getListOfProfiles().get(0).addSound(new Sound("rain", "/rain.wav"));
+            pm.getListOfProfiles().get(1).addSound(new Sound("wind", "/wind.wav"));
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralProfileManager.json");
             writer.open();
             writer.write(pm);

@@ -3,21 +3,26 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+
 // Represents an individual sound that can be played alone or in a profile that has a volume and name
 public class Sound implements Writable {
 
     private static int DEFAULT_VOLUME = 0; // volume of every sound upon first play before volume is manually adjusted
     private int volume;  // volume of the sound
-    private String name; // name of the sound'
-
+    private String name; // name of the sound
+    private String audio; // .wav audio of the sound
 
     /*
      * REQUIRES: soundName has a non-zero length; soundVolume is a whole number and is >= 0
      * EFFECTS: name of Sound is set to soundName
      */
-    public Sound(String soundName) {
+    public Sound(String soundName, String soundAudio) {
         name = soundName;
         volume = DEFAULT_VOLUME;
+        audio = soundAudio;
     }
 
     /*
@@ -58,6 +63,24 @@ public class Sound implements Writable {
 
     public String getSoundName() {
         return name;
+    }
+
+    public String getSoundAudio() {
+        return audio;
+    }
+
+    //EFFECTS: plays audio of sound
+    // Source: https://stackoverflow.com/questions/39085830/how-to-play-a-wav-file-using-java
+    public void playSound() {
+        try {
+            Clip sound = AudioSystem.getClip();
+
+            sound.open(AudioSystem.getAudioInputStream(new File(audio)));
+
+            sound.start();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     @Override

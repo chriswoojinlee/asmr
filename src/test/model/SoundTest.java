@@ -9,7 +9,7 @@ public class SoundTest {
 
     @BeforeEach
     void setup() {
-        sound = new Sound("Wind");
+        sound = new Sound("Wind", "data/wind.wav");
     }
 
     @Test
@@ -32,8 +32,14 @@ public class SoundTest {
     }
 
     @Test
+    void testPlaySound() {
+        sound.playSound();
+    }
+
+    @Test
     void testGetters() {
         assertEquals(0, sound.getVolume());
         assertEquals("Wind", sound.getSoundName());
+        assertEquals("data/wind.wav", sound.getSoundAudio());
     }
 }

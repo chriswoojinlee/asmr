@@ -10,6 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+// Source: JsonSerializationDemo from CPSC 210
 class JsonReaderTest extends JsonTest {
 
     @Test
@@ -25,7 +26,7 @@ class JsonReaderTest extends JsonTest {
 
     @Test
     void testReaderEmptyProfileManager() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyProfileManager.json");
+        JsonReader reader = new JsonReader("data/testReaderEmptyProfileManager.json");
         try {
             ProfileManager pm = reader.read();
             assertEquals(0, pm.getProfileCount());
@@ -36,7 +37,7 @@ class JsonReaderTest extends JsonTest {
 
     @Test
     void testReaderGeneralProfileManager() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralProfileManager.json");
+        JsonReader reader = new JsonReader("data/testReaderGeneralProfileManager.json");
         try {
             ProfileManager pm = reader.read();
             List<Profile> profiles = pm.getListOfProfiles();

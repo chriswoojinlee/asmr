@@ -1,0 +1,10 @@
+{
+    "profiles": [
+        {
+            "name": "Profile1"
+        },
+        {
+            "name": "Profile2"
+        }
+    ]
+}

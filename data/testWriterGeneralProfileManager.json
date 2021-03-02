@@ -1,0 +1,22 @@
+{"profiles": [
+    {
+        "sounds": [
+            {
+                "volume": 0,
+                "name": "wind"
+            },
+            {
+                "volume": 0,
+                "name": "rain"
+            }
+        ],
+        "name": "Profile1"
+    },
+    {
+        "sounds": [{
+            "volume": 0,
+            "name": "wind"
+        }],
+        "name": "Profile2"
+    }
+]}

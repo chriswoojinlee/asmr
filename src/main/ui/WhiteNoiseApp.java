@@ -3,21 +3,31 @@ package ui;
 import model.ProfileManager;
 import model.Profile;
 import model.Sound;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 // White noise player application
 public class WhiteNoiseApp {
+    private static final String JSON_STORE = "./data/profilemanager.json";
     private Scanner input;
-    private final ProfileManager pm = new ProfileManager();
-    private final Sound rain = new Sound("Rain");
-    private final Sound wind = new Sound("Wind");
-    private final Sound thunder = new Sound("Thunder");
+    private ProfileManager pm = new ProfileManager();
+    private final Sound rain = new Sound("Rain", "data/rain.wav");
+    private final Sound wind = new Sound("Wind", "data/wind.wav");
+    private final Sound thunder = new Sound("Thunder", "data/thunder.wav");
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the white noise application
-    public WhiteNoiseApp() {
+    public WhiteNoiseApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runWhiteNoise();
     }
 
@@ -26,6 +36,7 @@ public class WhiteNoiseApp {
     private void runWhiteNoise() {
         boolean keepGoing = true;
         String command = null;
+        input = new Scanner(System.in);
 
         init();
 
@@ -55,8 +66,10 @@ public class WhiteNoiseApp {
             selectProfile();
         } else if (command.equals("e")) {
             doEditProfileName();
-        } else if (command.equals("b")) {
-            displayMenu();
+        } else if (command.equals("k")) {
+            saveProfileManager();
+        } else if (command.equals("l")) {
+            loadProfileManager();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -75,6 +88,8 @@ public class WhiteNoiseApp {
         System.out.println("\td -> Delete a profile");
         System.out.println("\ts -> Select a profile to access");
         System.out.println("\te -> Edit a profile's name");
+        System.out.println("\tk -> Keep the current profiles");
+        System.out.println("\tl -> Load the previously saved profiles");
         System.out.println("\tq -> Quit");
     }
 
@@ -133,7 +148,7 @@ public class WhiteNoiseApp {
     // EFFECTS: enters into a profile currently in the profile manager
     private void selectProfile() {
         System.out.println("\nChoose a profile by pressing the corresponding number");
-        System.out.println("\nOr press b -> Back to main menu");
+        System.out.println("Or press b -> Back to main menu");
 
         int i = 0;
         for (Profile p : pm.getListOfProfiles()) {
@@ -143,6 +158,8 @@ public class WhiteNoiseApp {
 
         int select = input.nextInt();
         profileMenu(pm.getListOfProfiles().get(select));
+
+        // while loop here
     }
 
     // MODIFIES: this
@@ -152,6 +169,7 @@ public class WhiteNoiseApp {
         System.out.println("\ta -> Add a sound");
         System.out.println("\tr -> Remove a sound");
         System.out.println("\tv -> View sounds");
+        System.out.println("\tp -> Play sounds");
         System.out.println("\tb -> Back to main menu");
 
         String command = input.next();
@@ -161,8 +179,10 @@ public class WhiteNoiseApp {
             doRemoveSound(p);
         } else if (command.equals("v")) {
             doViewSounds(p);
+        } else if (command.equals("p")) {
+            doPlaySounds(p);
         } else if (command.equals("b")) {
-            displayMenu();
+            runWhiteNoise();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -172,7 +192,8 @@ public class WhiteNoiseApp {
     // EFFECTS: adds a sound to the current profile
     private void doAddSound(Profile p) {
         System.out.println("\nAdd a sound by pressing the corresponding number");
-        System.out.println("\nOr press b -> Back to main menu");
+        System.out.println("Or press b -> Back to profile menu");
+
         ArrayList<Sound> availableSounds = new ArrayList<>();
         availableSounds.add(rain);
         availableSounds.add(wind);
@@ -194,7 +215,6 @@ public class WhiteNoiseApp {
     // EFFECTS: removes a sound from the current profile
     private void doRemoveSound(Profile p) {
         System.out.println("\nRemove a sound by pressing the corresponding number");
-        System.out.println("\nOr press b -> Back to main menu");
 
         int i = 0;
         for (Sound s : p.getSounds()) {
@@ -209,12 +229,48 @@ public class WhiteNoiseApp {
 
     // EFFECTS: view the sounds in current profile
     private void doViewSounds(Profile p) {
-        System.out.println("\nPress b -> Back to main menu");
+        int i = 0;
+        for (Sound s : p.getSounds()) {
+            System.out.println(i + ") " + p.getSounds().get(i).getSoundName());
+            i++;
+        }
+    }
+
+    // EFFECTS: play a sound in current profile
+    private void doPlaySounds(Profile p) {
+        System.out.println("\nPlay a sound by pressing the corresponding number");
 
         int i = 0;
         for (Sound s : p.getSounds()) {
             System.out.println(i + ") " + p.getSounds().get(i).getSoundName());
             i++;
+        }
+
+        int soundToPlay = input.nextInt();
+        Sound audio = p.getSounds().get(soundToPlay);
+        audio.playSound();
+    }
+
+    // EFFECTS: saves the app to file
+    private void saveProfileManager() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(pm);
+            jsonWriter.close();
+            System.out.println("Saved app to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads app from file
+    private void loadProfileManager() {
+        try {
+            pm = jsonReader.read();
+            System.out.println("Loaded app from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 }

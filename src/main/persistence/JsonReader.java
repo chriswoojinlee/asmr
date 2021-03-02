@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+// Source: JsonSerializationDemo from CPSC 210
 // Represents a reader that reads ProfileManager from JSON data stored in file
 public class JsonReader {
     private String source;
@@ -41,7 +42,7 @@ public class JsonReader {
 
     // EFFECTS: parses ProfileManager from JSON object and returns it
     private ProfileManager parseProfileManager(JSONObject jsonObject) {
-        ProfileManager pm = new ProfileManager();
+        ProfileManager pm = new ProfileManager();;
         addProfiles(pm, jsonObject);
         return pm;
     }
@@ -57,10 +58,29 @@ public class JsonReader {
     }
 
     // MODIFIES: pm
-    // EFFECTS: parses Profile from JSON object and adds it to ProfileManager
+    // EFFECTS: parses profile from JSON object and adds it to ProfileManager
     private void addProfile(ProfileManager pm, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Profile profile = new Profile(name);
         pm.addProfile(profile);
     }
+//
+//    // MODIFIES: pm
+//    // EFFECTS: parses sounds from JSON object and adds them to Profile
+//    private void addSounds(Profile p, JSONObject jsonObject) {
+//        JSONArray jsonArray = jsonObject.getJSONArray("sounds");
+//        for (Object json : jsonArray) {
+//            JSONObject nextSound = (JSONObject) json;
+//            addSound(p, nextSound);
+//        }
+//    }
+//
+//    // MODIFIES: pm
+//    // EFFECTS: parses sound from JSON object and adds it to ProfileManager
+//    private void addSound(Profile p, JSONObject jsonObject) {
+//        String name = jsonObject.getString("name");
+//        String audio = jsonObject.getString("audio");
+//        Sound s = new Sound(name, audio);
+//        p.addSound(s);
+//    }
 }

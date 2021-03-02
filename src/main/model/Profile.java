@@ -64,6 +64,7 @@ public class Profile implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
+        json.put("sounds", soundsToJson());
         return json;
     }
 

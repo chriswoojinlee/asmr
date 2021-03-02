@@ -16,9 +16,9 @@ class ProfileTest {
     @BeforeEach
     void setup() {
         profile = new Profile("Profile 1");
-        wind = new Sound("Wind");
-        rain = new Sound("Rain");
-        thunder = new Sound("Thunder");
+        wind = new Sound("Wind", "./data/wind.wav");
+        rain = new Sound("Rain", "./data/wind.wav");
+        thunder = new Sound("Thunder", "./data/wind.wav");
     }
 
     @Test
