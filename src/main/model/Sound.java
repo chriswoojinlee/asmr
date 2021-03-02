@@ -13,7 +13,7 @@ public class Sound implements Writable {
     private static int DEFAULT_VOLUME = 0; // volume of every sound upon first play before volume is manually adjusted
     private int volume;  // volume of the sound
     private String name; // name of the sound
-    private String audio; // .wav audio of the sound
+    private String audio; // .wav audio file of the sound
 
     /*
      * REQUIRES: soundName has a non-zero length; soundVolume is a whole number and is >= 0
@@ -69,7 +69,7 @@ public class Sound implements Writable {
         return audio;
     }
 
-    //EFFECTS: plays audio of sound
+    //EFFECTS: plays audio of sound using audio file
     // Source: https://stackoverflow.com/questions/39085830/how-to-play-a-wav-file-using-java
     public void playSound() {
         try {
