@@ -147,7 +147,7 @@ public class WhiteNoiseApp {
     // MODIFIES: this
     // EFFECTS: enters into a profile currently in the profile manager
     private void selectProfile() {
-        System.out.println("\nChoose a profile by pressing the corresponding number");
+        System.out.println("\nAccess a profile by pressing the corresponding number");
         System.out.println("Or press b -> Back to main menu");
 
         int i = 0;
@@ -159,7 +159,21 @@ public class WhiteNoiseApp {
         int select = input.nextInt();
         profileMenu(pm.getListOfProfiles().get(select));
 
-        // while loop here
+        boolean keepGoing = true;
+        String command = null;
+        input = new Scanner(System.in);
+
+        init();
+
+        while (keepGoing) {
+            profileMenu(pm.getListOfProfiles().get(select));
+            command = input.next();
+            command = command.toLowerCase();
+
+            if (command.equals("b")) {
+                keepGoing = false;
+            }
+        }
     }
 
     // MODIFIES: this
@@ -180,7 +194,7 @@ public class WhiteNoiseApp {
         } else if (command.equals("v")) {
             doViewSounds(p);
         } else if (command.equals("p")) {
-            doPlaySounds(p);
+            doPlaySound(p);
         } else if (command.equals("b")) {
             runWhiteNoise();
         } else {
@@ -237,7 +251,7 @@ public class WhiteNoiseApp {
     }
 
     // EFFECTS: play a sound in current profile
-    private void doPlaySounds(Profile p) {
+    private void doPlaySound(Profile p) {
         System.out.println("\nPlay a sound by pressing the corresponding number");
 
         int i = 0;

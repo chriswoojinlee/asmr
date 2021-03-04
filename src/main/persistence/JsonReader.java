@@ -2,6 +2,7 @@ package persistence;
 
 import model.Profile;
 import model.ProfileManager;
+import model.Sound;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -61,26 +62,22 @@ public class JsonReader {
     // EFFECTS: parses profile from JSON object and adds it to ProfileManager
     private void addProfile(ProfileManager pm, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
+        JSONArray sounds = jsonObject.getJSONArray("sounds");
         Profile profile = new Profile(name);
         pm.addProfile(profile);
+        for (Object json: sounds) {
+            JSONObject nextSound = (JSONObject) json;
+            addSound(profile, nextSound);
+        }
+
     }
-//
-//    // MODIFIES: pm
-//    // EFFECTS: parses sounds from JSON object and adds them to Profile
-//    private void addSounds(Profile p, JSONObject jsonObject) {
-//        JSONArray jsonArray = jsonObject.getJSONArray("sounds");
-//        for (Object json : jsonArray) {
-//            JSONObject nextSound = (JSONObject) json;
-//            addSound(p, nextSound);
-//        }
-//    }
-//
-//    // MODIFIES: pm
-//    // EFFECTS: parses sound from JSON object and adds it to ProfileManager
-//    private void addSound(Profile p, JSONObject jsonObject) {
-//        String name = jsonObject.getString("name");
-//        String audio = jsonObject.getString("audio");
-//        Sound s = new Sound(name, audio);
-//        p.addSound(s);
-//    }
+
+    // MODIFIES: pm
+    // EFFECTS: parses sound from JSON object and adds it to ProfileManager
+    private void addSound(Profile p, JSONObject jsonObject) {
+        String name = jsonObject.getString("name");
+        String audio = jsonObject.getString("audio");
+        Sound s = new Sound(name, audio);
+        p.addSound(s);
+    }
 }

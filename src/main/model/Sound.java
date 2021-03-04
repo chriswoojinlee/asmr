@@ -88,6 +88,7 @@ public class Sound implements Writable {
         JSONObject json = new JSONObject();
         json.put("volume", volume);
         json.put("name", name);
+        json.put("audio", audio);
         return json;
     }
 }

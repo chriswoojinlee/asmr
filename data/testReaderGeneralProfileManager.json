@@ -1,10 +1,25 @@
-{
-    "profiles": [
-        {
-            "name": "Profile1"
-        },
-        {
-            "name": "Profile2"
-        }
-    ]
-}
+{"profiles": [
+  {
+    "sounds": [
+      {
+        "volume": 0,
+        "name": "wind",
+        "audio": "/wind.wav"
+      },
+      {
+        "volume": 0,
+        "name": "rain",
+        "audio": "/rain.wav"
+      }
+    ],
+    "name": "Profile1"
+  },
+  {
+    "sounds": [{
+      "volume": 0,
+      "name": "wind",
+      "audio": "/wind.wav"
+    }],
+    "name": "Profile2"
+  }
+]}

@@ -44,6 +44,9 @@ class JsonReaderTest extends JsonTest {
             assertEquals(2, profiles.size());
             checkProfile("Profile1", profiles.get(0));
             checkProfile("Profile2", profiles.get(1));
+            checkSound("wind",  profiles.get(0).getSounds().get(0));
+            checkSound("rain",  profiles.get(0).getSounds().get(1));
+            checkSound("wind",  profiles.get(1).getSounds().get(0));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

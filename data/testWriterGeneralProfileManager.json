@@ -3,11 +3,13 @@
         "sounds": [
             {
                 "volume": 0,
-                "name": "wind"
+                "name": "wind",
+                "audio": "/wind.wav"
             },
             {
                 "volume": 0,
-                "name": "rain"
+                "name": "rain",
+                "audio": "/rain.wav"
             }
         ],
         "name": "Profile1"
@@ -15,7 +17,8 @@
     {
         "sounds": [{
             "volume": 0,
-            "name": "wind"
+            "name": "wind",
+            "audio": "/wind.wav"
         }],
         "name": "Profile2"
     }

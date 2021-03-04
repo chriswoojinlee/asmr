@@ -1,4 +1,15 @@
 {"profiles": [{
-    "sounds": [],
-    "name": "idk"
+    "sounds": [
+        {
+            "volume": 0,
+            "name": "Thunder",
+            "audio": "data/thunder.wav"
+        },
+        {
+            "volume": 0,
+            "name": "Wind",
+            "audio": "data/wind.wav"
+        }
+    ],
+    "name": "lol"
 }]}
