@@ -41,7 +41,7 @@ public class WhiteNoiseApp {
         init();
 
         while (keepGoing) {
-            displayMenu();
+            mainMenu();
             command = input.next();
             command = command.toLowerCase();
 
@@ -62,8 +62,8 @@ public class WhiteNoiseApp {
             doCreateProfile();
         } else if (command.equals("d")) {
             doDeleteProfile();
-        } else if (command.equals("s")) {
-            selectProfile();
+        } else if (command.equals("a")) {
+            accessProfile();
         } else if (command.equals("e")) {
             doEditProfileName();
         } else if (command.equals("k")) {
@@ -82,13 +82,13 @@ public class WhiteNoiseApp {
     }
 
     // EFFECTS: displays menu of options to user
-    private void displayMenu() {
+    private void mainMenu() {
         System.out.println("\nChoose from:");
         System.out.println("\tc -> Create a new profile");
         System.out.println("\td -> Delete a profile");
-        System.out.println("\ts -> Select a profile to access");
+        System.out.println("\ta -> Access a profile");
         System.out.println("\te -> Edit a profile's name");
-        System.out.println("\tk -> Keep the current profiles");
+        System.out.println("\ts -> Save the current profiles");
         System.out.println("\tl -> Load the previously saved profiles");
         System.out.println("\tq -> Quit");
     }
@@ -146,7 +146,7 @@ public class WhiteNoiseApp {
 
     // MODIFIES: this
     // EFFECTS: enters into a profile currently in the profile manager
-    private void selectProfile() {
+    private void accessProfile() {
         System.out.println("\nAccess a profile by pressing the corresponding number");
         System.out.println("Or press b -> Back to main menu");
 

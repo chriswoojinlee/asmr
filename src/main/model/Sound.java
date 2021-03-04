@@ -30,10 +30,9 @@ public class Sound implements Writable {
     public void playSound() {
         try {
             Clip sound = AudioSystem.getClip();
-
             sound.open(AudioSystem.getAudioInputStream(new File(audio)));
-
             sound.start();
+            sound.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

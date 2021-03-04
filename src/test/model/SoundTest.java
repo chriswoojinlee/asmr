@@ -33,7 +33,6 @@ public class SoundTest {
 
     @Test
     void testPlaySound() {
-
         sound.playSound();
     }
 
