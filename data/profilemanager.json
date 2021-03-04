@@ -2,14 +2,19 @@
     "sounds": [
         {
             "volume": 0,
-            "name": "Thunder",
-            "audio": "data/thunder.wav"
+            "name": "Rain",
+            "audio": "data/rain.wav"
         },
         {
             "volume": 0,
             "name": "Wind",
             "audio": "data/wind.wav"
+        },
+        {
+            "volume": 0,
+            "name": "Thunder",
+            "audio": "data/thunder.wav"
         }
     ],
-    "name": "lol"
+    "name": "idk"
 }]}

@@ -22,7 +22,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads ProfileManager from file and returns it;
+    // EFFECTS: reads profile manager from file and returns it;
     // throws IOException if an error occurs reading data from file
     public ProfileManager read() throws IOException {
         String jsonData = readFile(source);
@@ -41,7 +41,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses ProfileManager from JSON object and returns it
+    // EFFECTS: parses profile manager from JSON object and returns it
     private ProfileManager parseProfileManager(JSONObject jsonObject) {
         ProfileManager pm = new ProfileManager();;
         addProfiles(pm, jsonObject);
@@ -49,7 +49,7 @@ public class JsonReader {
     }
 
     // MODIFIES: pm
-    // EFFECTS: parses profiles from JSON object and adds them to ProfileManager
+    // EFFECTS: parses profiles from JSON object and adds them to profile manager
     private void addProfiles(ProfileManager pm, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("profiles");
         for (Object json : jsonArray) {
@@ -59,7 +59,8 @@ public class JsonReader {
     }
 
     // MODIFIES: pm
-    // EFFECTS: parses profile from JSON object and adds it to ProfileManager
+    // EFFECTS: parses profile from JSON object and adds it to profile manager;
+    //          parses profile's list of sounds and adds each sound to profile
     private void addProfile(ProfileManager pm, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         JSONArray sounds = jsonObject.getJSONArray("sounds");
@@ -72,8 +73,8 @@ public class JsonReader {
 
     }
 
-    // MODIFIES: pm
-    // EFFECTS: parses sound from JSON object and adds it to ProfileManager
+    // MODIFIES: p
+    // EFFECTS: parses sound from JSON object and adds it to given profile
     private void addSound(Profile p, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String audio = jsonObject.getString("audio");

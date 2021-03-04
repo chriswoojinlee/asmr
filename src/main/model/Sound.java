@@ -13,7 +13,7 @@ public class Sound implements Writable {
     private static int DEFAULT_VOLUME = 0; // volume of every sound upon first play before volume is manually adjusted
     private int volume;  // volume of the sound
     private String name; // name of the sound
-    private String audio; // .wav audio file of the sound
+    private String audio; // path of .wav audio file of the sound
 
     /*
      * REQUIRES: soundName has a non-zero length; soundVolume is a whole number and is >= 0
@@ -23,6 +23,20 @@ public class Sound implements Writable {
         name = soundName;
         volume = DEFAULT_VOLUME;
         audio = soundAudio;
+    }
+
+    // Source: https://stackoverflow.com/questions/39085830/how-to-play-a-wav-file-using-java
+    // EFFECTS: plays audio of sound using audio file
+    public void playSound() {
+        try {
+            Clip sound = AudioSystem.getClip();
+
+            sound.open(AudioSystem.getAudioInputStream(new File(audio)));
+
+            sound.start();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     /*
@@ -67,20 +81,6 @@ public class Sound implements Writable {
 
     public String getSoundAudio() {
         return audio;
-    }
-
-    //EFFECTS: plays audio of sound using audio file
-    // Source: https://stackoverflow.com/questions/39085830/how-to-play-a-wav-file-using-java
-    public void playSound() {
-        try {
-            Clip sound = AudioSystem.getClip();
-
-            sound.open(AudioSystem.getAudioInputStream(new File(audio)));
-
-            sound.start();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
     }
 
     @Override

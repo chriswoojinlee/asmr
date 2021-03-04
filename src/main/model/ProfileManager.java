@@ -51,7 +51,7 @@ public class ProfileManager implements Writable {
         return json;
     }
 
-    // EFFECTS: returns profiles in this profile manager as a JSON array
+    // EFFECTS: returns profiles in the profile manager as a JSON array
     private JSONArray profilesToJson() {
         JSONArray jsonArray = new JSONArray();
 
