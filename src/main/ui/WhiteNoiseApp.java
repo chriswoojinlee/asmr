@@ -6,6 +6,10 @@ import model.Sound;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -262,7 +266,26 @@ public class WhiteNoiseApp {
 
         int soundToPlay = input.nextInt();
         Sound audio = p.getSounds().get(soundToPlay);
-        audio.playSound();
+        playSound(audio.getSoundAudio());
+    }
+
+    // Source: https://stackoverflow.com/questions/39085830/how-to-play-a-wav-file-using-java
+    // EFFECTS: plays audio of sound using audio file
+    public void playSound(String wavLocation) {
+        String audio = wavLocation;
+
+        try {
+            Clip sound = AudioSystem.getClip();
+            sound.open(AudioSystem.getAudioInputStream(new File(audio)));
+            sound.start();
+            sound.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (IllegalArgumentException | SecurityException | LineUnavailableException e) {
+            System.err.println(e.getMessage());
+        } catch (IOException ioe) {
+            System.err.println(ioe.getMessage());
+        } catch (Exception genE) {
+            System.err.println(genE.getMessage());
+        }
     }
 
     // EFFECTS: saves the app to file

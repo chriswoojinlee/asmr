@@ -32,16 +32,6 @@ public class SoundTest {
     }
 
     @Test
-    void testPlaySound() {
-        sound.playSound();
-    }
-
-    @Test void testPlaySoundWrongPath() {
-       Sound windSound = new Sound("Wind", "data/wind.wa");
-       windSound.playSound();
-    }
-
-    @Test
     void testGetters() {
         assertEquals(0, sound.getVolume());
         assertEquals("Wind", sound.getSoundName());

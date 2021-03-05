@@ -3,12 +3,6 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import java.io.File;
-import java.io.IOException;
-
 // Represents an individual sound that can be played alone or in a profile that has a volume and name
 public class Sound implements Writable {
 
@@ -25,23 +19,6 @@ public class Sound implements Writable {
         name = soundName;
         volume = DEFAULT_VOLUME;
         audio = soundAudio;
-    }
-
-    // Source: https://stackoverflow.com/questions/39085830/how-to-play-a-wav-file-using-java
-    // EFFECTS: plays audio of sound using audio file
-    public void playSound() {
-        try {
-            Clip sound = AudioSystem.getClip();
-            sound.open(AudioSystem.getAudioInputStream(new File(audio)));
-            sound.start();
-            sound.loop(Clip.LOOP_CONTINUOUSLY);
-        } catch (IllegalArgumentException | SecurityException | LineUnavailableException e) {
-            System.err.println(e.getMessage());
-        } catch (IOException ioe) {
-            System.err.println(ioe.getMessage());
-        } catch (Exception genE) {
-            System.err.println(genE.getMessage());
-        }
     }
 
     /*
