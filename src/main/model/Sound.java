@@ -5,7 +5,9 @@ import persistence.Writable;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import java.io.File;
+import java.io.IOException;
 
 // Represents an individual sound that can be played alone or in a profile that has a volume and name
 public class Sound implements Writable {
@@ -33,8 +35,12 @@ public class Sound implements Writable {
             sound.open(AudioSystem.getAudioInputStream(new File(audio)));
             sound.start();
             sound.loop(Clip.LOOP_CONTINUOUSLY);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException | SecurityException | LineUnavailableException e) {
             System.err.println(e.getMessage());
+        } catch (IOException ioe) {
+            System.err.println(ioe.getMessage());
+        } catch (Exception genE) {
+            System.err.println(genE.getMessage());
         }
     }
 

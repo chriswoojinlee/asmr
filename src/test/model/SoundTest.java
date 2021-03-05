@@ -37,7 +37,7 @@ public class SoundTest {
     }
 
     @Test void testPlaySoundWrongPath() {
-       Sound windSound = new Sound("Wind", "data/wind.wav");
+       Sound windSound = new Sound("Wind", "data/wind.wa");
        windSound.playSound();
     }
 
