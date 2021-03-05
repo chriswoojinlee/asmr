@@ -1,20 +1,8 @@
 {"profiles": [{
-    "sounds": [
-        {
-            "volume": 0,
-            "name": "Rain",
-            "audio": "data/rain.wav"
-        },
-        {
-            "volume": 0,
-            "name": "Wind",
-            "audio": "data/wind.wav"
-        },
-        {
-            "volume": 0,
-            "name": "Thunder",
-            "audio": "data/thunder.wav"
-        }
-    ],
-    "name": "idk"
+    "sounds": [{
+        "volume": 0,
+        "name": "Rain",
+        "audio": "data/rain.wav"
+    }],
+    "name": "lol"
 }]}

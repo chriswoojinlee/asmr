@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 // White noise player application
 public class WhiteNoiseApp {
-    private static final String JSON_STORE = "./data/profilemanager.json";
+    private static final String JSON_STORE = "data/profilemanager.json";
     private Scanner input;
     private ProfileManager pm = new ProfileManager();
     private final Sound rain = new Sound("Rain", "data/rain.wav");
@@ -66,7 +66,7 @@ public class WhiteNoiseApp {
             accessProfile();
         } else if (command.equals("e")) {
             doEditProfileName();
-        } else if (command.equals("k")) {
+        } else if (command.equals("s")) {
             saveProfileManager();
         } else if (command.equals("l")) {
             loadProfileManager();
