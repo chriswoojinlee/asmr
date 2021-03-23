@@ -1,8 +1,10 @@
-{"profiles": [{
-    "sounds": [{
-        "volume": 0,
-        "name": "Rain",
-        "audio": "data/rain.wav"
-    }],
-    "name": "idk"
-}]}
+{"profiles": [
+    {
+        "sounds": [],
+        "name": "idk"
+    },
+    {
+        "sounds": [],
+        "name": "haha"
+    }
+]}

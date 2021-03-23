@@ -26,12 +26,15 @@ An overview of this project:
 ## User Stories
 - As a user, I want to be able to create a new sound profile.
 - As a user, I want to be able to delete an existing sound profile.
-- As a user, I want to be able to rename an existing sound profile.  
+- As a user, I want to be able to rename an existing sound profile.
 - As a user, I want to be able to add a sound to an existing sound profile.
 - As a user, I want to be able to delete a sound from an existing sound profile.
 - As a user, I want to be able to play sounds in profiles.
 - As a user, I want to be able to save sound profiles to file.
 - As a user, I want to be able to load in saved sound profiles from file.
+- As a user, I want to be able to be able to view the profiles I have made.
+- As a user, I want to be able to be able to view the sounds in a profile.
+- As a user, I want to be able to hear a trashcan sound when I delete a profile.
 
 ## Future User Stories (for my own reference)
 - As a user, I want to be able to increase the volume of a sound.
