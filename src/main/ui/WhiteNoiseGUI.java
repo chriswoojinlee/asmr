@@ -21,6 +21,7 @@ public class WhiteNoiseGUI implements ActionListener {
     JButton saveProfilesButton = new JButton("Save existing profiles");
     JButton loadProfilesButton = new JButton("Load saved profiles");
     JButton deleteProfileButton = new JButton("Delete a profile");
+    JButton editProfileNameButton = new JButton("Edit a profile's name");
 
     public WhiteNoiseGUI() {
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -41,12 +42,16 @@ public class WhiteNoiseGUI implements ActionListener {
         deleteProfileButton.setBounds(250,250,200,50);
         deleteProfileButton.setFocusable(true);
         deleteProfileButton.addActionListener(this);
+        editProfileNameButton.setBounds(50,250,200,50);
+        editProfileNameButton.setFocusable(true);
+        editProfileNameButton.addActionListener(this);
 
         frame.add(createNewProfileButton);
         frame.add(viewProfilesButton);
         frame.add(saveProfilesButton);
         frame.add(loadProfilesButton);
         frame.add(deleteProfileButton);
+        frame.add(editProfileNameButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500,500);
@@ -76,6 +81,10 @@ public class WhiteNoiseGUI implements ActionListener {
             } catch (IOException ex) {
                 System.out.println("Unable to read from file: " + JSON_STORE);
             }
+        } else if (e.getSource() == deleteProfileButton) {
+            DeleteProfileWindow deleteProfileWindow = new DeleteProfileWindow(profileManager);
+        } else if (e.getSource() == editProfileNameButton) {
+            EditProfileNameWindow editProfileNameWindow = new EditProfileNameWindow(profileManager);
         }
     }
 

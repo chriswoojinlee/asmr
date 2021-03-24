@@ -21,12 +21,26 @@ public class CreateProfileWindow {
         newProfileNameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                profile = new Profile(newProfileNameField.getText());
-                profileManager.addProfile(profile);
+                String newProfileName = newProfileNameField.getText();
+
+                if (doesntAlreadyContain(profileManager, newProfileName)) {
+                    profile = new Profile(newProfileName);
+                    profileManager.addProfile(profile);
+                }
             }
         });
         frame.setSize(400, 80);
         frame.setLayout(null);
         frame.setVisible(true);
+    }
+
+    public boolean doesntAlreadyContain(ProfileManager profileManager, String newProfileName) {
+        for (Profile p : profileManager.getListOfProfiles()) {
+            if (p.getProfileName().equals(newProfileName)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
