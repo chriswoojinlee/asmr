@@ -11,6 +11,8 @@ public class ViewProfilesWindow {
     JLabel names;
     String listOfProfiles = "Profiles:";
 
+    // MODIFIES: this
+    // EFFECTS: creates profiles label; afterwards, lists out every profile in profile manager
     public ViewProfilesWindow(ProfileManager profileManager) {
         this.profileManager = profileManager;
         for (Profile p : profileManager.getListOfProfiles()) {

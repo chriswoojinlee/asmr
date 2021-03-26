@@ -13,6 +13,8 @@ public class CreateProfileWindow {
     JTextField newProfileNameField = new JTextField();
     JLabel nameLabel = new JLabel("Enter a name for the new profile:");
 
+    // MODIFIES: this
+    // EFFECTS: creates new profile name label; adds new profile with entered name to profile manager
     public CreateProfileWindow(ProfileManager profileManager) {
         newProfileNameField.setBounds(260, 0, 125, 50);
         nameLabel.setBounds(50, 0, 250, 50);

@@ -18,6 +18,9 @@ public class DeleteProfileWindow {
     JLabel deleteLabel = new JLabel("Enter the name for the profile to delete:");
     String wavLocation = "data/trash.wav";
 
+    // MODIFIES: this
+    // EFFECTS: creates profile deletion label; deletes profile with matching entered name;
+    //          plays trash sound upon deletion of a profile
     public DeleteProfileWindow(ProfileManager profileManager) {
         profileToDeleteField.setBounds(360, 0, 125, 50);
         deleteLabel.setBounds(50, 0, 250, 50);

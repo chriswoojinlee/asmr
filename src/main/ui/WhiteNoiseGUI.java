@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+// GUI for White Noise APP
 public class WhiteNoiseGUI implements ActionListener {
     private static final String JSON_STORE = "data/profilemanager.json";
     private JsonWriter jsonWriter;
@@ -23,6 +24,8 @@ public class WhiteNoiseGUI implements ActionListener {
     JButton deleteProfileButton = new JButton("Delete a profile");
     JButton editProfileNameButton = new JButton("Edit a profile's name");
 
+    // MODIFIES: this
+    // EFFECTS: adds various buttons onto frame and closes windows upon exit
     public WhiteNoiseGUI() {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
@@ -46,6 +49,10 @@ public class WhiteNoiseGUI implements ActionListener {
         editProfileNameButton.setFocusable(true);
         editProfileNameButton.addActionListener(this);
 
+        constructorPart2();
+    }
+
+    private void constructorPart2() {
         frame.add(createNewProfileButton);
         frame.add(viewProfilesButton);
         frame.add(saveProfilesButton);
@@ -59,6 +66,8 @@ public class WhiteNoiseGUI implements ActionListener {
         frame.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: provides conditional actions upon button press for each button
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == createNewProfileButton) {
@@ -66,14 +75,7 @@ public class WhiteNoiseGUI implements ActionListener {
         } else if (e.getSource() == viewProfilesButton) {
             ViewProfilesWindow viewProfilesWindow = new ViewProfilesWindow(profileManager);
         } else if (e.getSource() == saveProfilesButton) {
-            try {
-                jsonWriter.open();
-                jsonWriter.write(profileManager);
-                jsonWriter.close();
-                System.out.println("Saved app to " + JSON_STORE);
-            } catch (FileNotFoundException ex) {
-                System.out.println("Unable to write to file: " + JSON_STORE);
-            }
+            saveProfiles();
         } else if (e.getSource() == loadProfilesButton) {
             try {
                 profileManager = jsonReader.read();
@@ -85,6 +87,17 @@ public class WhiteNoiseGUI implements ActionListener {
             DeleteProfileWindow deleteProfileWindow = new DeleteProfileWindow(profileManager);
         } else if (e.getSource() == editProfileNameButton) {
             EditProfileNameWindow editProfileNameWindow = new EditProfileNameWindow(profileManager);
+        }
+    }
+
+    private void saveProfiles() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(profileManager);
+            jsonWriter.close();
+            System.out.println("Saved app to " + JSON_STORE);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 

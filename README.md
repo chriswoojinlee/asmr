@@ -30,8 +30,8 @@ An overview of this project:
 - As a user, I want to be able to add a sound to an existing sound profile.
 - As a user, I want to be able to delete a sound from an existing sound profile.
 - As a user, I want to be able to play sounds in profiles.
-- As a user, I want to be able to save sound profiles to file.
-- As a user, I want to be able to load in saved sound profiles from file.
+- As a user, I want to be able to save profiles to file.
+- As a user, I want to be able to load in saved profiles from file.
 - As a user, I want to be able to be able to view the profiles I have made.
 - As a user, I want to be able to be able to view the sounds in a profile.
 - As a user, I want to be able to hear a trashcan sound when I delete a profile.
