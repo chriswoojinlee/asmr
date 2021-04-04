@@ -65,7 +65,7 @@ public class JsonReader {
         String name = jsonObject.getString("name");
         JSONArray sounds = jsonObject.getJSONArray("sounds");
         Profile profile = new Profile(name);
-        pm.addProfile(profile);
+        pm.getListOfProfiles().add(profile);
         for (Object json: sounds) {
             JSONObject nextSound = (JSONObject) json;
             addSound(profile, nextSound);

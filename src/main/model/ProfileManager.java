@@ -1,8 +1,11 @@
 package model;
 
+import exceptions.AlreadyContainsException;
+import exceptions.DoesntContainException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
+
 import java.util.ArrayList;
 
 // Represents the top-level of the multiple different sound profiles in the application
@@ -17,23 +20,31 @@ public class ProfileManager implements Writable {
     }
 
     /*
-     * REQUIRES: the profile manager does not already contain the specified profile
      * MODIFIES: this
      * EFFECTS: specified profile is added to list of profiles
      */
-    public String addProfile(Profile p) {
+    public String addProfile(Profile p) throws AlreadyContainsException {
+        for (Profile profile : listOfProfiles) {
+            if (p.getProfileName().equals(profile.getProfileName())) {
+                throw new AlreadyContainsException();
+            }
+        }
         listOfProfiles.add(p);
         return "Added a new profile: " + p.getProfileName() + "!";
     }
 
     /*
-     * REQUIRES: the profile manager already contains the specified profile
      * MODIFIES: this
      * EFFECTS: specified profile is deleted from list of profiles
      */
-    public String deleteProfile(Profile p) {
-        listOfProfiles.remove(p);
-        return "Deleted profile " + p.getProfileName() + "!";
+    public String deleteProfile(Profile p) throws DoesntContainException {
+        for (Profile profile : listOfProfiles) {
+            if (p.getProfileName().equals(profile.getProfileName())) {
+                listOfProfiles.remove(p);
+                return "Deleted profile " + p.getProfileName() + "!";
+            }
+        }
+        throw new DoesntContainException();
     }
 
     public ArrayList<Profile> getListOfProfiles() {

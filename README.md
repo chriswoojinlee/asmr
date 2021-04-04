@@ -36,6 +36,10 @@ An overview of this project:
 - As a user, I want to be able to be able to view the sounds in a profile.
 - As a user, I want to be able to hear a trashcan sound when I delete a profile.
 
+## Phase 4: Task 2
+- Tested and designed a class in my model package that is robust 
+  (ProfileManager.addProfile() and ProfileManager.deleteProfile())
+
 ## Future User Stories (for my own reference)
 - As a user, I want to be able to increase the volume of a sound.
 - As a user, I want to be able to decrease the volume of a sound.

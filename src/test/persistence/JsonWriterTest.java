@@ -50,8 +50,8 @@ class JsonWriterTest extends JsonTest {
     void testWriterGeneralProfileManager() {
         try {
             ProfileManager pm = new ProfileManager();
-            pm.addProfile(new Profile("Profile1"));
-            pm.addProfile(new Profile("Profile2"));
+            pm.getListOfProfiles().add(new Profile("Profile1"));
+            pm.getListOfProfiles().add(new Profile("Profile2"));
             pm.getListOfProfiles().get(0).addSound(new Sound("wind", "/wind.wav"));
             pm.getListOfProfiles().get(0).addSound(new Sound("rain", "/rain.wav"));
             pm.getListOfProfiles().get(1).addSound(new Sound("wind", "/wind.wav"));

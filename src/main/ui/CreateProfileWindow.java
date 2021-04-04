@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.AlreadyContainsException;
 import model.Profile;
 import model.ProfileManager;
 
@@ -26,8 +27,12 @@ public class CreateProfileWindow {
                 String newProfileName = newProfileNameField.getText();
 
                 if (doesntAlreadyContain(profileManager, newProfileName)) {
-                    profile = new Profile(newProfileName);
-                    profileManager.addProfile(profile);
+                    try {
+                        profile = new Profile(newProfileName);
+                        profileManager.addProfile(profile);
+                    } catch (AlreadyContainsException ex) {
+                        System.out.println("There already exists a profile with the same name!");
+                    }
                 }
             }
         });

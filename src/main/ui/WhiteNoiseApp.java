@@ -1,5 +1,7 @@
 package ui;
 
+import exceptions.AlreadyContainsException;
+import exceptions.DoesntContainException;
 import model.ProfileManager;
 import model.Profile;
 import model.Sound;
@@ -103,8 +105,12 @@ public class WhiteNoiseApp {
         System.out.println("Enter name for new profile");
         String name = input.next();
         Profile p = new Profile(name);
-        pm.addProfile(p);
-        System.out.println("A new profile named " + name + " has been created!");
+        try {
+            pm.addProfile(p);
+            System.out.println("A new profile named " + name + " has been created!");
+        } catch (AlreadyContainsException e) {
+            System.out.println("A profile with that name already exists!");
+        }
     }
 
 
@@ -125,8 +131,13 @@ public class WhiteNoiseApp {
         }
 
         int profileToDelete = input.nextInt();
-        System.out.println(pm.getListOfProfiles().get(profileToDelete).getProfileName() + " has been deleted!");
-        pm.deleteProfile(pm.getListOfProfiles().get(profileToDelete));
+        String deleteString = pm.getListOfProfiles().get(profileToDelete).getProfileName();
+        try {
+            pm.deleteProfile(pm.getListOfProfiles().get(profileToDelete));
+            System.out.println(deleteString + " has been deleted!");
+        } catch (DoesntContainException e) {
+            System.out.println("There is no profile to delete!");
+        }
     }
 
     // MODIFIES: this

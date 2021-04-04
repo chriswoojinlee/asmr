@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.DoesntContainException;
 import model.Profile;
 import model.ProfileManager;
 
@@ -31,8 +32,12 @@ public class DeleteProfileWindow {
             public void actionPerformed(ActionEvent e) {
                 for (Profile p : profileManager.getListOfProfiles()) {
                     if (profileToDeleteField.getText().equals(p.getProfileName())) {
-                        profileManager.deleteProfile(p);
-                        playSound(wavLocation);
+                        try {
+                            profileManager.deleteProfile(p);
+                            playSound(wavLocation);
+                        } catch (DoesntContainException ex) {
+                            System.out.println("Profile doesn't exist!");
+                        }
                     }
                 }
             }

@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.AlreadyContainsException;
+import exceptions.DoesntContainException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,36 +27,53 @@ public class ProfileManagerTest {
     }
 
     @Test
-    void testAddProfile() {
+    void testAddProfileNoIssues() {
         ArrayList<Profile> listOfProfilesOne = new ArrayList<>();
-        ArrayList<Profile> listOfProfilesTwo = new ArrayList<>();
         listOfProfilesOne.add(profileOne);
-        listOfProfilesTwo.add(profileOne);
-        listOfProfilesTwo.add(profileTwo);
 
-        profileManager.addProfile(profileOne);                                 // Profile 1 is added to Profile manager
-        assertEquals(listOfProfilesOne, profileManager.getListOfProfiles());   // Profile manager now has Profile 1
-        profileManager.addProfile(profileTwo);                                 // Profile 2 is added to Profile manager
-        assertEquals(listOfProfilesTwo, profileManager.getListOfProfiles());   // Profile manager now has Profile 1 and Profile 2
+        try {
+            profileManager.addProfile(profileOne);
+            assertEquals(listOfProfilesOne, profileManager.getListOfProfiles());
+        } catch(AlreadyContainsException e) {
+            fail("Unexpected AlreadyContainsException");
+        }
     }
 
     @Test
-    void testDeleteProfile() {
-        ArrayList<Profile> listOfProfilesOne = new ArrayList<>();
-        ArrayList<Profile> listOfProfilesTwo = new ArrayList<>();
-        ArrayList<Profile> listOfProfilesThree = new ArrayList<>();
-        listOfProfilesOne.add(profileOne);
-        listOfProfilesTwo.add(profileOne);
-        listOfProfilesTwo.add(profileTwo);
+    void testAddProfileAlreadyHasProfile() {
+        try {
+            profileManager.addProfile(profileOne);
+            profileManager.addProfile(profileOne);
+            fail("Expected AlreadyContainsException");
+        } catch(AlreadyContainsException e) {
+            // expected
+        }
+    }
 
-        profileManager.addProfile(profileOne);
-        profileManager.addProfile(profileTwo);
+    @Test
+    void testDeleteProfileNoIssues() {
+        ArrayList<Profile> listOfProfiles = new ArrayList<>();
 
-        assertEquals(listOfProfilesTwo, profileManager.getListOfProfiles());    // Profile manager has Profile 1 and Profile 2
-        profileManager.deleteProfile(profileTwo);                               // Profile 2 is deleted from Profile manager
-        assertEquals(listOfProfilesOne, profileManager.getListOfProfiles());    // Profile manager has only Profile 1
-        profileManager.deleteProfile(profileOne);                               // Profile 1 is deleted from Profile manager
-        assertEquals(listOfProfilesThree, profileManager.getListOfProfiles());  // Profile manager has no profiles
+        try {
+            profileManager.addProfile(profileOne);
+            profileManager.deleteProfile(profileOne);
+            assertEquals(listOfProfiles, profileManager.getListOfProfiles());
+        } catch(DoesntContainException e) {
+            fail("Unexpected DoesntContainException");
+        } catch(AlreadyContainsException e) {
+            fail("Unexpected AlreadyContainsException");
+        }
+
+    }
+
+    @Test
+    void testDeleteProfileNoProfile() {
+        try {
+            profileManager.deleteProfile(profileOne);
+            fail("Expected DoesntContainException");
+        } catch(DoesntContainException e) {
+            // expected
+        }
     }
 
     @Test
@@ -65,8 +84,13 @@ public class ProfileManagerTest {
 
     @Test
     void testGetProfileCount() {
-        assertEquals(0, profileManager.getProfileCount());
-        profileManager.addProfile(profileOne);
-        assertEquals(1, profileManager.getProfileCount());
+        try {
+            assertEquals(0, profileManager.getProfileCount());
+            profileManager.addProfile(profileOne);
+            assertEquals(1, profileManager.getProfileCount());
+        } catch (AlreadyContainsException e) {
+            fail("Unexpected AlreadyContainsException");
+        }
+
     }
 }
