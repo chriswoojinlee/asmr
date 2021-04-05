@@ -22,8 +22,6 @@ public class EditProfileNameWindow {
         profileToEditField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Profile profileToEdit = null;
-                
                 for (Profile p : profileManager.getListOfProfiles()) {
                     if (profileToEditField.getText().equals(p.getProfileName())) {
                         Profile profileToEdit = p;

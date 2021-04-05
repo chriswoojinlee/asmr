@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CreateProfileWindow {
-    Profile profile;
     JFrame frame = new JFrame();
     JTextField newProfileNameField = new JTextField();
     JLabel nameLabel = new JLabel("Enter a name for the new profile:");
@@ -28,7 +27,7 @@ public class CreateProfileWindow {
 
                 if (doesntAlreadyContain(profileManager, newProfileName)) {
                     try {
-                        profile = new Profile(newProfileName);
+                        Profile profile = new Profile(newProfileName);
                         profileManager.addProfile(profile);
                     } catch (AlreadyContainsException ex) {
                         System.out.println("There already exists a profile with the same name!");

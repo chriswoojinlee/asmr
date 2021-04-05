@@ -40,6 +40,14 @@ An overview of this project:
 - Tested and designed a class in my model package that is robust 
   (ProfileManager.addProfile() and ProfileManager.deleteProfile())
 
+## Phase 4: Task 3
+- If I had more time to work on this project, I would refactor the hierarchy of my main 
+  three model package classes, ProfileManager, Profile, and Sound. If my ProfileManager class 
+  used a Map with objects of type Profile as keys and objects of type ArrayList<Sound> as 
+  values, or if my ProfileManager and Profile classes extended a common interface that specifies
+  add() and remove() methods, there would be a lot less redundancy between the code of these three 
+  classes.
+
 ## Future User Stories (for my own reference)
 - As a user, I want to be able to increase the volume of a sound.
 - As a user, I want to be able to decrease the volume of a sound.
