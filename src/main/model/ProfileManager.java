@@ -21,7 +21,8 @@ public class ProfileManager implements Writable {
 
     /*
      * MODIFIES: this
-     * EFFECTS: specified profile is added to list of profiles
+     * EFFECTS: specified profile is added to list of profiles;
+     *          if specified profile is already in list of profiles, throw AlreadyContainsException
      */
     public String addProfile(Profile p) throws AlreadyContainsException {
         for (Profile profile : listOfProfiles) {
@@ -36,6 +37,7 @@ public class ProfileManager implements Writable {
     /*
      * MODIFIES: this
      * EFFECTS: specified profile is deleted from list of profiles
+     *          if specified profile doesn't exist in list of profiles, throw DoesntContainsException
      */
     public String deleteProfile(Profile p) throws DoesntContainException {
         for (Profile profile : listOfProfiles) {
