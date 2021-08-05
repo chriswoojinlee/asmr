@@ -23,6 +23,7 @@ public class WhiteNoiseGUI implements ActionListener {
     JButton loadProfilesButton = new JButton("Load saved profiles");
     JButton deleteProfileButton = new JButton("Delete a profile");
     JButton editProfileNameButton = new JButton("Edit a profile's name");
+    JButton accessProfileButton = new JButton("Access a profile");
 
     // MODIFIES: this
     // EFFECTS: adds various buttons onto frame and closes windows upon exit
@@ -48,6 +49,9 @@ public class WhiteNoiseGUI implements ActionListener {
         editProfileNameButton.setBounds(50,250,200,50);
         editProfileNameButton.setFocusable(true);
         editProfileNameButton.addActionListener(this);
+        accessProfileButton.setBounds(150,300,200,50);
+        accessProfileButton.setFocusable(true);
+        accessProfileButton.addActionListener(this);
 
         constructorPart2();
     }
@@ -59,6 +63,7 @@ public class WhiteNoiseGUI implements ActionListener {
         frame.add(loadProfilesButton);
         frame.add(deleteProfileButton);
         frame.add(editProfileNameButton);
+        frame.add(accessProfileButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500,500);
@@ -87,6 +92,8 @@ public class WhiteNoiseGUI implements ActionListener {
             DeleteProfileWindow deleteProfileWindow = new DeleteProfileWindow(profileManager);
         } else if (e.getSource() == editProfileNameButton) {
             EditProfileNameWindow editProfileNameWindow = new EditProfileNameWindow(profileManager);
+        } else if (e.getSource() == accessProfileButton) {
+            AccessProfileWindow accessProfileWindow = new AccessProfileWindow(profileManager);
         }
     }
 
