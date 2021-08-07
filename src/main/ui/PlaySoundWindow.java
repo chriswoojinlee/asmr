@@ -11,8 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PlaySoundWindow {
+    Profile profile;
     JFrame frame = new JFrame();
     JTextField soundNameField = new JTextField();
     JLabel nameLabel = new JLabel("Enter the name of a sound to play:");
@@ -20,25 +22,22 @@ public class PlaySoundWindow {
     // MODIFIES: this
     // EFFECTS: creates new profile name label; adds new profile with entered name to profile manager
     public PlaySoundWindow(Profile profile) {
+        this.profile = profile;
         soundNameField.setBounds(260, 0, 125, 50);
-        nameLabel.setBounds(50, 0, 250, 50);
+        nameLabel.setBounds(10, 0, 250, 50);
         frame.add(nameLabel);
         frame.add(soundNameField);
         soundNameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String soundName = soundNameField.getText();
-                if(profile.getSounds().contains(new Sound("Wind", "data/wind.wav")) &&
-                        soundName.equals("Wind")) {
+                if(soundName.equals("Wind") && containsSound(soundName)) {
                     playSound("data/wind.wav");
-                } else if(profile.getSounds().contains(new Sound("Rain", "data/rain.wav")) &&
-                        soundName.equals("Rain")) {
+                } else if(soundName.equals("Rain") && containsSound(soundName)) {
                     playSound("data/rain.wav");
-                } else if(profile.getSounds().contains(new Sound("Thunder", "data/thunder.wav"))
-                        && soundName.equals("Thunder")) {
+                } else if(soundName.equals("Thunder") && containsSound(soundName)) {
                     playSound("data/thunder.wav");
-                } else if(
-                        soundName.equals("Fire")) {
+                } else if(soundName.equals("Fire") && containsSound(soundName)) {
                     playSound("data/fire.wav");
                 }
             }
@@ -62,5 +61,17 @@ public class PlaySoundWindow {
         } catch (Exception genE) {
             System.err.println(genE.getMessage());
         }
+    }
+
+    public boolean containsSound(String soundName) {
+        ArrayList<Sound> sounds = profile.getSounds();
+
+        for(int i = 0; i < profile.getSoundCount(); i++) {
+            if(sounds.get(i).getSoundName().equals(soundName)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
