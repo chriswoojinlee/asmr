@@ -10,13 +10,14 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-// GUI for White Noise APP
+// GUI for white noise app
 public class WhiteNoiseGUI implements ActionListener {
     private static final String JSON_STORE = "data/profilemanager.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     ProfileManager profileManager = new ProfileManager();
     JFrame frame = new JFrame();
+    JLabel appName = new JLabel("WHITE NOISE");
     JButton createNewProfileButton = new JButton("Create new profile");
     JButton viewProfilesButton = new JButton("View existing profiles");
     JButton saveProfilesButton = new JButton("Save existing profiles");
@@ -31,25 +32,26 @@ public class WhiteNoiseGUI implements ActionListener {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
-        createNewProfileButton.setBounds(50,150,200,50);
+        appName.setBounds(210, 0, 100, 50);
+        createNewProfileButton.setBounds(50,50,200,50);
         createNewProfileButton.setFocusable(true);
         createNewProfileButton.addActionListener(this);
-        viewProfilesButton.setBounds(250,150,200,50);
+        viewProfilesButton.setBounds(250,50,200,50);
         viewProfilesButton.setFocusable(true);
         viewProfilesButton.addActionListener(this);
-        saveProfilesButton.setBounds(50,200,200,50);
+        saveProfilesButton.setBounds(50,100,200,50);
         saveProfilesButton.setFocusable(true);
         saveProfilesButton.addActionListener(this);
-        loadProfilesButton.setBounds(250,200,200,50);
+        loadProfilesButton.setBounds(250,100,200,50);
         loadProfilesButton.setFocusable(true);
         loadProfilesButton.addActionListener(this);
-        deleteProfileButton.setBounds(250,250,200,50);
+        deleteProfileButton.setBounds(250,150,200,50);
         deleteProfileButton.setFocusable(true);
         deleteProfileButton.addActionListener(this);
-        editProfileNameButton.setBounds(50,250,200,50);
+        editProfileNameButton.setBounds(50,150,200,50);
         editProfileNameButton.setFocusable(true);
         editProfileNameButton.addActionListener(this);
-        accessProfileButton.setBounds(150,300,200,50);
+        accessProfileButton.setBounds(50,200,400,50);
         accessProfileButton.setFocusable(true);
         accessProfileButton.addActionListener(this);
 
@@ -57,6 +59,7 @@ public class WhiteNoiseGUI implements ActionListener {
     }
 
     private void constructorPart2() {
+        frame.add(appName);
         frame.add(createNewProfileButton);
         frame.add(viewProfilesButton);
         frame.add(saveProfilesButton);
@@ -66,7 +69,7 @@ public class WhiteNoiseGUI implements ActionListener {
         frame.add(accessProfileButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500,500);
+        frame.setSize(500,300);
         frame.setLayout(null);
         frame.setVisible(true);
     }

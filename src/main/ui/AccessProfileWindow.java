@@ -14,7 +14,7 @@ public class AccessProfileWindow {
 
     public AccessProfileWindow(ProfileManager profileManager) {
         profileToAccess.setBounds(360, 0, 125, 50);
-        accessLabel.setBounds(50, 0, 250, 50);
+        accessLabel.setBounds(30, 0, 270, 50);
         frame.add(accessLabel);
         frame.add(profileToAccess);
         profileToAccess.addActionListener(new ActionListener() {

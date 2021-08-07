@@ -1,6 +1,7 @@
 package ui;
 
 import model.Profile;
+import model.Sound;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -27,7 +28,19 @@ public class PlaySoundWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String soundName = soundNameField.getText();
-                playSound("data/rain.wav");
+                if(profile.getSounds().contains(new Sound("Wind", "data/wind.wav")) &&
+                        soundName.equals("Wind")) {
+                    playSound("data/wind.wav");
+                } else if(profile.getSounds().contains(new Sound("Rain", "data/rain.wav")) &&
+                        soundName.equals("Rain")) {
+                    playSound("data/rain.wav");
+                } else if(profile.getSounds().contains(new Sound("Thunder", "data/thunder.wav"))
+                        && soundName.equals("Thunder")) {
+                    playSound("data/thunder.wav");
+                } else if(
+                        soundName.equals("Fire")) {
+                    playSound("data/fire.wav");
+                }
             }
         });
         frame.setSize(400, 80);

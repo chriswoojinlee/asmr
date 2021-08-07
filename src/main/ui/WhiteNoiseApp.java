@@ -26,6 +26,7 @@ public class WhiteNoiseApp {
     private final Sound rain = new Sound("Rain", "data/rain.wav");
     private final Sound wind = new Sound("Wind", "data/wind.wav");
     private final Sound thunder = new Sound("Thunder", "data/thunder.wav");
+    private final Sound fire = new Sound("Fire", "data.fire.wav");
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
@@ -227,6 +228,7 @@ public class WhiteNoiseApp {
         availableSounds.add(rain);
         availableSounds.add(wind);
         availableSounds.add(thunder);
+        availableSounds.add(fire);
 
         int i = 0;
         for (Sound s : availableSounds) {

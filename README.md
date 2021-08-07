@@ -4,9 +4,9 @@
 
 An overview of this project:
 - The application will produce various ASMR trigger sounds such as rain, wind, thunder,
-  fire crackling, singing bowls, and tuning forks. Core features include being able to 
-  make custom preset sound profiles, being able to combine multiple sounds at once, 
-  being able to adjust the volume of each sound, and of course, playing sounds.
+  and fire crackling. Core features include being able to make custom preset sound 
+  profiles, being able to combine multiple sounds at once, being able to adjust the 
+  volume of each sound, and of course, playing sounds.
   
 - This project is of interest to me because when I study and sleep every day,
   I occasionally encounter distracting noises from the rest of my household or
